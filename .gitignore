@@ -1,0 +1,20 @@
+# Godot 4+ specific ignores
+**/.godot/
+godot/android/
+
+*.blend1
+
+*.translation
+
+.DS_Store
+
+# Editor
+.zed/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+build/
+rust/target/
