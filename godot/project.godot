@@ -12,11 +12,20 @@ config_version=5
 
 config/name="Top down shooter 3D"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "yellow",
+"res://resources/": "teal",
+"res://scenes/": "red",
+"res://scripts/": "orange"
+}
 
 [input]
 
@@ -49,6 +58,7 @@ sprint={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 

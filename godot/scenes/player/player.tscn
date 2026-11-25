@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c24yl51b4lleb" path="res://assets/models/player/Y Bot.fbx" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cmyxlsg05k5w3" path="res://scripts/player/player.gd" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://cja4qrm7jr227" path="res://scripts/player/camera.gd" id="3_gmlin"]
+[ext_resource type="Material" uid="uid://dkak10a8awv5" path="res://resources/material/red_unshaded.tres" id="4_lvxji"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
 friction = 0.52
@@ -10,7 +12,10 @@ friction = 0.52
 radius = 0.20800781
 height = 1.7583008
 
+[sub_resource type="SphereMesh" id="SphereMesh_gmlin"]
+
 [node name="Player" type="RigidBody3D" unique_id=363198349]
+physics_interpolation_mode = 1
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -27,11 +32,12 @@ visible = false
 shape = SubResource("CapsuleShape3D_dovo2")
 
 [node name="Rotate" type="Node3D" parent="." unique_id=45177311]
+physics_interpolation_mode = 2
 
-[node name="Y Bot" parent="Rotate" unique_id=1490928765 instance=ExtResource("1_8afob")]
+[node name="Y Bot" parent="Rotate" unique_id=1260027258 instance=ExtResource("1_8afob")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Rotate/Y Bot" index="0" unique_id=1639412930]
+[node name="Skeleton3D" parent="Rotate/Y Bot" index="0" unique_id=1812211090]
 bones/2/position = Vector3(0, 0.11731978, 2.7755576e-17)
 bones/2/rotation = Quaternion(0.00019609246, -1.8268114e-09, -9.316071e-06, 1)
 bones/3/position = Vector3(1.931492e-13, 0.13458836, 6.3143935e-15)
@@ -119,5 +125,25 @@ bones/58/position = Vector3(-6.938894e-17, 0.1572156, -1.6653345e-16)
 bones/61/position = Vector3(9.7144515e-17, 0.4059944, 2.6714742e-16)
 bones/62/position = Vector3(-2.9143354e-16, 0.42099023, -6.2450045e-16)
 bones/63/position = Vector3(1.3877788e-17, 0.1572156, 1.3877788e-17)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1944815126 node_paths=PackedStringArray("target")]
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7.0129585, 0)
+top_level = true
+script = ExtResource("3_gmlin")
+target = NodePath("..")
+max_follow_speed = 5.0
+max_distance = 1.0
+
+[node name="MouseRay" type="RayCast3D" parent="Camera3D" unique_id=310878212]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(-3.15, -10, -4)
+
+[node name="MouseMarker" type="MeshInstance3D" parent="Camera3D" unique_id=2060806440]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5.4590573, 1.4210855e-14)
+top_level = true
+mesh = SubResource("SphereMesh_gmlin")
+surface_material_override/0 = ExtResource("4_lvxji")
 
 [editable path="Rotate/Y Bot"]
