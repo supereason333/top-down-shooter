@@ -24,10 +24,17 @@ noise = SubResource("FastNoiseLite_aqk2v")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwbse"]
 albedo_texture = SubResource("NoiseTexture2D_036b0")
+texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_pkg7o"]
 material = SubResource("StandardMaterial3D_dwbse")
 size = Vector2(100, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nnsk1"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nnsk1"]
+size = Vector3(1, 2, 1)
 
 [node name="World" type="Node3D" unique_id=694485405]
 physics_interpolation_mode = 2
@@ -50,3 +57,12 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 mesh = SubResource("QuadMesh_pkg7o")
 
 [node name="Player" parent="." unique_id=363198349 instance=ExtResource("1_f3sb7")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1225929576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.300389, 1, -2.3312807)
+mesh = SubResource("BoxMesh_nnsk1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=1705266913]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=1091521318]
+shape = SubResource("BoxShape3D_nnsk1")

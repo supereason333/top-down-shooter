@@ -1,5 +1,7 @@
 extends Camera3D
 
+signal raycast_collision_updated(pos:Vector3)
+
 @export var target:Node3D
 @export var max_follow_speed := 10.0
 @export var max_distance := 10.0
@@ -55,6 +57,7 @@ func _physics_process(_delta: float) -> void:
 	if mouse_raycast.get_collider():
 		mouse_marker.visible = true
 		var collision_pos := mouse_raycast.get_collision_point()
+		raycast_collision_updated.emit(collision_pos)
 		mouse_marker.global_position = collision_pos
 	else:
 		mouse_marker.visible = false

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c24yl51b4lleb" path="res://assets/models/player/Y Bot.fbx" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cmyxlsg05k5w3" path="res://scripts/player/player.gd" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://cr07putyvg8rb" path="res://scripts/player/player_rotate.gd" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://cja4qrm7jr227" path="res://scripts/player/camera.gd" id="3_gmlin"]
 [ext_resource type="Material" uid="uid://dkak10a8awv5" path="res://resources/material/red_unshaded.tres" id="4_lvxji"]
 
@@ -13,6 +14,8 @@ radius = 0.20800781
 height = 1.7583008
 
 [sub_resource type="SphereMesh" id="SphereMesh_gmlin"]
+radius = 0.05
+height = 0.1
 
 [node name="Player" type="RigidBody3D" unique_id=363198349]
 physics_interpolation_mode = 1
@@ -27,12 +30,14 @@ sprint_speed = 4.0
 max_force = 30000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246572661]
+physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8967885, 0)
 visible = false
 shape = SubResource("CapsuleShape3D_dovo2")
 
 [node name="Rotate" type="Node3D" parent="." unique_id=45177311]
-physics_interpolation_mode = 2
+physics_interpolation_mode = 1
+script = ExtResource("2_p47bc")
 
 [node name="Y Bot" parent="Rotate" unique_id=1260027258 instance=ExtResource("1_8afob")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -137,13 +142,15 @@ max_distance = 1.0
 
 [node name="MouseRay" type="RayCast3D" parent="Camera3D" unique_id=310878212]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-target_position = Vector3(-3.15, -10, -4)
+target_position = Vector3(0, -10, 0)
 
 [node name="MouseMarker" type="MeshInstance3D" parent="Camera3D" unique_id=2060806440]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5.4590573, 1.4210855e-14)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 top_level = true
 mesh = SubResource("SphereMesh_gmlin")
 surface_material_override/0 = ExtResource("4_lvxji")
+
+[connection signal="raycast_collision_updated" from="Camera3D" to="Rotate" method="_raycast_collision_changed"]
 
 [editable path="Rotate/Y Bot"]
