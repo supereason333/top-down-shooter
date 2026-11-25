@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cmyxlsg05k5w3" path="res://scripts/player/player.gd" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://cr07putyvg8rb" path="res://scripts/player/player_rotate.gd" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://cja4qrm7jr227" path="res://scripts/player/camera.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://berlh0k5mygpf" path="res://scripts/player/item_loader.gd" id="4_75vfm"]
 [ext_resource type="Material" uid="uid://dkak10a8awv5" path="res://resources/material/red_unshaded.tres" id="4_lvxji"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
@@ -130,6 +131,10 @@ bones/58/position = Vector3(-6.938894e-17, 0.1572156, -1.6653345e-16)
 bones/61/position = Vector3(9.7144515e-17, 0.4059944, 2.6714742e-16)
 bones/62/position = Vector3(-2.9143354e-16, 0.42099023, -6.2450045e-16)
 bones/63/position = Vector3(1.3877788e-17, 0.1572156, 1.3877788e-17)
+
+[node name="ItemLoader" type="Node3D" parent="Rotate" unique_id=128255414]
+script = ExtResource("4_75vfm")
+id = &"counter"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1944815126 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 2

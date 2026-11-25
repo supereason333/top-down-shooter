@@ -13,4 +13,5 @@ func _unload_into_data(_data:ItemData):
 func _item_input(event:InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			counter -= 1
+			counter += 1
+			print(counter)
