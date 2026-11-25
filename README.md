@@ -17,7 +17,7 @@ It is suppose to be a top down extraction shooter esque game made in godot where
   - Aiming
   - Weapon equipping
   - Health
-  - Basic player controller
+  - Basic player controller x 
 - Entities
   - Health
   - Modular AI logic
