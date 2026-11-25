@@ -3,9 +3,13 @@ extends Node3D
 class_name Item3D
 
 ## When first instantiated, loads state
-func load_from_data(data:ItemData):
+func _load_from_data(_data:ItemData):
 	pass
 
 ## When unloaded, stores state
-func unload_into_data(data:ItemData):
+func _unload_into_data(_data:ItemData):
+	pass
+
+## input passed onto the item from whatever thing is holding it.
+func _item_input(_event:InputEvent):
 	pass

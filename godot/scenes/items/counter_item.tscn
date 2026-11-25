@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://e5qwpptqs4sv"]
+
+[ext_resource type="Script" uid="uid://uhg2ceglerqj" path="res://scripts/item_system/item_scripts/counter_item.gd" id="1_wqoil"]
+
+[node name="CounterItem" type="Node3D" unique_id=511767669]
+script = ExtResource("1_wqoil")
+metadata/_custom_type_script = "uid://t6qe7ekghr3e"

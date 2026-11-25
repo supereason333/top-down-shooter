@@ -2,14 +2,17 @@
 
 [ext_resource type="Script" uid="uid://buhxri6bk3fob" path="res://scripts/item_system/class_scripts/item_data_base.gd" id="1_p8ygr"]
 [ext_resource type="Script" uid="uid://bt51drjury4kt" path="res://scripts/item_system/class_scripts/item_library.gd" id="2_0qfbg"]
+[ext_resource type="PackedScene" uid="uid://e5qwpptqs4sv" path="res://scenes/items/counter_item.tscn" id="2_h0kve"]
+[ext_resource type="Script" uid="uid://ccmmrvuixoi4k" path="res://scripts/item_system/item_scripts/counter_item_res.gd" id="3_l6rrl"]
 
-[sub_resource type="Resource" id="Resource_p8ygr"]
-script = ExtResource("1_p8ygr")
-display_name = "Item"
-id = &"item"
-metadata/_custom_type_script = "uid://buhxri6bk3fob"
+[sub_resource type="Resource" id="Resource_js284"]
+script = ExtResource("3_l6rrl")
+display_name = "Counter"
+id = &"counter"
+item_scene = ExtResource("2_h0kve")
+metadata/_custom_type_script = "uid://ccmmrvuixoi4k"
 
 [resource]
 script = ExtResource("2_0qfbg")
-lib = Array[ExtResource("1_p8ygr")]([SubResource("Resource_p8ygr")])
+lib = Array[ExtResource("1_p8ygr")]([SubResource("Resource_js284")])
 metadata/_custom_type_script = "uid://bt51drjury4kt"
