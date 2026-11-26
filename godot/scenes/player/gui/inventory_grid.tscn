@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bjhiigqm3ttgm"]
-
-[ext_resource type="Script" uid="uid://vc6lkuw4nxo1" path="res://scripts/player/gui/inventory_grid.gd" id="1_dphbw"]
-
-[node name="Panel" type="Panel" unique_id=1920950316]
-custom_minimum_size = Vector2(64, 64)
-script = ExtResource("1_dphbw")

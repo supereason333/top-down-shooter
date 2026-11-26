@@ -1,6 +1,20 @@
 [gd_resource type="Theme" format=3 uid="uid://0ghsfj13nmiv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7suek"]
+bg_color = Color(0.585062, 0.585062, 0.58506197, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.49411765, 0.49411765, 0.49411765, 0)
+corner_detail = 1
+
 [resource]
+GridPanel/base_type = &"Panel"
+GridPanel/styles/panel = SubResource("StyleBoxFlat_7suek")
+InventoryGrid/base_type = &"GridContainer"
+InventoryGrid/constants/h_separation = 0
+InventoryGrid/constants/v_separation = 0
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
