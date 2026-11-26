@@ -3,11 +3,12 @@ extends VBoxContainer
 const HOVER_BUTTON:PackedScene = preload("uid://osckj4xj15i")
 
 @onready var inventory:PlayerInventory = %Inventory
+@onready var tooltip:TooltipPanel = $HBox/TooltipPanel
 
 @onready var part_tab:HBoxContainer = $PartTab
 @onready var name_label:Label = $NameLabel
-@onready var container_display:GridContainer = $ClearPanel/ContainerDisplay
-@onready var item_overlay:Control = $ClearPanel/ItemOverlay
+@onready var container_display:GridContainer = $HBox/ClearPanel/ContainerDisplay
+@onready var item_overlay:Control = $HBox/ClearPanel/ItemOverlay
 
 var current_container:int = 0
 
@@ -59,3 +60,23 @@ func _container_items_changed() -> void:
 
 func _on_hover_mouse_entered(container:int) -> void:
 	set_displayed(container)
+
+var mouse_grid_pos:Vector2i
+
+# check which is pressed and do stuff
+func _mouse_catcher_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		@warning_ignore("integer_division")
+		var new_pos:Vector2i = Vector2i(event.position) / 64
+
+		if mouse_grid_pos != new_pos:
+			mouse_grid_pos = new_pos
+			update_under_mouse()
+
+# when mouse moves, it updates the tooltip and stuff
+func update_under_mouse():
+	var item := inventory.get_body_container_item(current_container, mouse_grid_pos)
+	if item:
+		tooltip.update(item)
+	else:
+		tooltip.clear()

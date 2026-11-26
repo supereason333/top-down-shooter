@@ -58,6 +58,14 @@ func add_item(item:ItemData) -> bool:
 # 	return con.get_at_point(pos)
 
 
+func get_container_item(container:int, pos:Vector2i) -> ItemData:
+	if container < 0 or container >= stored_containers.size(): return null
+	var con := stored_containers[container]
+	return con.get_container().get_at_point(pos)
+
+func get_body_container_item(container:int, pos:Vector2i) -> ItemData:
+	if container < 0 or container >= body_containers.size(): return null
+	return body_containers[container].get_at_point(pos)
 
 
 

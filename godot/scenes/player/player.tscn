@@ -275,102 +275,102 @@ mouse_filter = 2
 theme = ExtResource("10_gx1jg")
 script = ExtResource("11_gx1jg")
 
-[node name="LUpper" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=995407038]
+[node name="InventoryContainers" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=180275129]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="InventoryContainers" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot/LUpper" unique_id=180275129]
-layout_mode = 2
+offset_right = 192.0
+offset_bottom = 188.0
 script = ExtResource("12_ugbui")
 
-[node name="ContainerTabs" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers" unique_id=404386281]
+[node name="ContainerTabs" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot/InventoryContainers" unique_id=404386281]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="HoverButton" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ContainerTabs" unique_id=759224928 instance=ExtResource("13_gx1jg")]
+[node name="HoverButton" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/ContainerTabs" unique_id=759224928 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
 size_flags_horizontal = 1
 
-[node name="HoverButton2" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ContainerTabs" unique_id=496045975 instance=ExtResource("13_gx1jg")]
+[node name="HoverButton2" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/ContainerTabs" unique_id=496045975 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
 size_flags_horizontal = 1
 
-[node name="HoverButton3" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ContainerTabs" unique_id=2116444668 instance=ExtResource("13_gx1jg")]
+[node name="HoverButton3" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/ContainerTabs" unique_id=2116444668 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
 size_flags_horizontal = 1
 
-[node name="ContainerLabel" type="Label" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers" unique_id=689913872]
+[node name="ContainerLabel" type="Label" parent="CanvasLayer/InventoryUIRoot/InventoryContainers" unique_id=689913872]
 layout_mode = 2
 text = "Bag 1"
 
-[node name="ClearPanel" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers" unique_id=984584855]
+[node name="HBox" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot/InventoryContainers" unique_id=1773047106]
+layout_mode = 2
+
+[node name="ClearPanel" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox" unique_id=984584855]
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"InvisPanel"
 
-[node name="ContainerDisplay" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel" unique_id=2125035439]
+[node name="ContainerDisplay" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel" unique_id=2125035439]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_type_variation = &"InventoryGrid"
 columns = 3
 
-[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=127267530]
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/ContainerDisplay" unique_id=127267530]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=2055356616]
+[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/ContainerDisplay" unique_id=2055356616]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=1153689059]
+[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/ContainerDisplay" unique_id=1153689059]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=2144214831]
+[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/ContainerDisplay" unique_id=2144214831]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel5" type="Panel" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=429245522]
+[node name="Panel5" type="Panel" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/ContainerDisplay" unique_id=429245522]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel6" type="Panel" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=4602628]
+[node name="Panel6" type="Panel" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/ContainerDisplay" unique_id=4602628]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="ItemOverlay" type="Control" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel" unique_id=1377291850]
+[node name="ItemOverlay" type="Control" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel" unique_id=1377291850]
 layout_mode = 2
 
-[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel" unique_id=462052222]
+[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel" unique_id=462052222]
 layout_mode = 2
 
-[node name="TooltipPanel" parent="CanvasLayer/InventoryUIRoot/LUpper" unique_id=1327762756 instance=ExtResource("15_myrg7")]
+[node name="TooltipPanel" parent="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox" unique_id=1327762756 instance=ExtResource("15_myrg7")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="RUpper" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=501786689]
+[node name="BodyEquipped" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=538958067]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -378,97 +378,122 @@ anchor_right = 1.0
 offset_left = -192.0
 offset_bottom = 188.0
 grow_horizontal = 0
-
-[node name="TooltipPanel" parent="CanvasLayer/InventoryUIRoot/RUpper" unique_id=169841955 instance=ExtResource("15_myrg7")]
-visible = false
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="BodyEquipped" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot/RUpper" unique_id=538958067]
-layout_mode = 2
 script = ExtResource("12_fm80t")
 
-[node name="PartTab" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped" unique_id=1747778896]
+[node name="PartTab" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot/BodyEquipped" unique_id=1747778896]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="HoverButton" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/PartTab" unique_id=1293190181 instance=ExtResource("13_gx1jg")]
+[node name="HoverButton" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=1293190181 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
 
-[node name="HoverButton2" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/PartTab" unique_id=1955092396 instance=ExtResource("13_gx1jg")]
+[node name="HoverButton4" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=557741541 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
 
-[node name="HoverButton3" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/PartTab" unique_id=1160947824 instance=ExtResource("13_gx1jg")]
+[node name="HoverButton5" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=1689000407 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped" unique_id=486242289]
+[node name="HoverButton6" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=1742148623 instance=ExtResource("13_gx1jg")]
+layout_mode = 2
+
+[node name="HoverButton7" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=430279285 instance=ExtResource("13_gx1jg")]
+layout_mode = 2
+
+[node name="HoverButton8" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=113800895 instance=ExtResource("13_gx1jg")]
+layout_mode = 2
+
+[node name="HoverButton9" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=1515152680 instance=ExtResource("13_gx1jg")]
+layout_mode = 2
+
+[node name="HoverButton10" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=116192986 instance=ExtResource("13_gx1jg")]
+layout_mode = 2
+
+[node name="HoverButton11" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=1138189734 instance=ExtResource("13_gx1jg")]
+layout_mode = 2
+
+[node name="HoverButton2" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=1955092396 instance=ExtResource("13_gx1jg")]
+layout_mode = 2
+
+[node name="HoverButton3" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/PartTab" unique_id=1160947824 instance=ExtResource("13_gx1jg")]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/InventoryUIRoot/BodyEquipped" unique_id=486242289]
 layout_mode = 2
 text = "Head"
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/NameLabel" unique_id=483526471]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/NameLabel" unique_id=483526471]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ClearPanel" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped" unique_id=472787188]
+[node name="HBox" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot/BodyEquipped" unique_id=1662304114]
+layout_mode = 2
+alignment = 2
+
+[node name="TooltipPanel" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox" unique_id=169841955 instance=ExtResource("15_myrg7")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ClearPanel" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox" unique_id=472787188]
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
 theme_type_variation = &"InvisPanel"
 
-[node name="ContainerDisplay" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel" unique_id=450799752]
+[node name="ContainerDisplay" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel" unique_id=450799752]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_type_variation = &"InventoryGrid"
 columns = 3
 
-[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=893469711]
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/ContainerDisplay" unique_id=893469711]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=1451022333]
+[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/ContainerDisplay" unique_id=1451022333]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=2003834319]
+[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/ContainerDisplay" unique_id=2003834319]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=1711284920]
+[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/ContainerDisplay" unique_id=1711284920]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel5" type="Panel" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=346422368]
+[node name="Panel5" type="Panel" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/ContainerDisplay" unique_id=346422368]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel6" type="Panel" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=1379570256]
+[node name="Panel6" type="Panel" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/ContainerDisplay" unique_id=1379570256]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="ItemOverlay" type="Control" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel" unique_id=224746118]
+[node name="ItemOverlay" type="Control" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel" unique_id=224746118]
 layout_mode = 2
 
-[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel" unique_id=1807948520]
+[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel" unique_id=1807948520]
 layout_mode = 2
 
 [node name="LLower" type="HBoxContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=902914657]
@@ -744,10 +769,12 @@ grow_vertical = 2
 mouse_filter = 2
 
 [connection signal="raycast_collision_updated" from="Camera3D" to="Rotate" method="_raycast_collision_changed"]
-[connection signal="mouse_entered" from="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/LUpper/TooltipPanel" method="show"]
-[connection signal="mouse_exited" from="CanvasLayer/InventoryUIRoot/LUpper/InventoryContainers/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/LUpper/TooltipPanel" method="hide"]
-[connection signal="mouse_entered" from="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/RUpper/TooltipPanel" method="show"]
-[connection signal="mouse_exited" from="CanvasLayer/InventoryUIRoot/RUpper/BodyEquipped/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/RUpper/TooltipPanel" method="hide"]
+[connection signal="gui_input" from="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/InventoryContainers" method="_mouse_catcher_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/TooltipPanel" method="show"]
+[connection signal="mouse_exited" from="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/InventoryContainers/HBox/TooltipPanel" method="hide"]
+[connection signal="gui_input" from="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/BodyEquipped" method="_mouse_catcher_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/TooltipPanel" method="show"]
+[connection signal="mouse_exited" from="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/TooltipPanel" method="hide"]
 [connection signal="mouse_entered" from="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped" to="CanvasLayer/InventoryUIRoot/LLower/TooltipPanel" method="show"]
 [connection signal="mouse_exited" from="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped" to="CanvasLayer/InventoryUIRoot/LLower/TooltipPanel" method="hide"]
 [connection signal="mouse_entered" from="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/MouseCatcher" to="CanvasLayer/InventoryUIRoot/LLower/TooltipPanel" method="show"]
