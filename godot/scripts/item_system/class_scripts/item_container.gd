@@ -6,29 +6,41 @@ signal item_added(item:ItemData)
 signal item_removed(item:ItemData)
 
 @export var name:String
-@export var size:Vector2i
+@export var size:Vector2i:
+	set(value):
+		size = value
+		_build_grid()
 @export var allow_containers:bool = false
 
 var items:Array[ItemData]
 var item_rects:Array[Rect2i]
 var grid:Array[Array]	# Array[Array[bool]]
 
-func _init() -> void:
+func _build_grid() -> void:
 	grid.resize(size.x)
 	for cx in grid:
 		cx.resize(size.y)
 		cx.fill(false)
 
+## chekcs the criteria for the container to see whether item can be added or not,
+## if checking location use check_grid
+func can_add(item:ItemData) -> bool:
+	if allow_containers: return true
+	if item is ContainerItem: return false
+	return true
+
 # Adds to the container, at the selected position else random
 func add_item(item:ItemData, pos:Vector2i = Vector2i(-1, -1)) -> bool:
-	if item is ContainerItem and !allow_containers: return false
+	# if item is ContainerItem and !allow_containers: return false
+	if !can_add(item): return false
 	var rect:Rect2i
+	var master := item.get_master()
 	if pos == Vector2i(-1, -1):
-		pos = get_first_free(item.size)
+		pos = get_first_free(master.size)
 		if pos == Vector2i(-1, -1): return false
-		rect = Rect2i(pos, item.size)
+		rect = Rect2i(pos, master.size)
 	else:
-		rect = Rect2i(pos, item.size)
+		rect = Rect2i(pos, master.size)
 		if !check_grid(rect): return false
 
 	set_area(rect, true)
@@ -72,13 +84,27 @@ func remove_item_at_point(vec:Vector2i) -> ItemData:
 	return remove_item(i)
 
 # checks whether rect can fit on grid
-func check_grid(rect:Rect2i) -> bool:
+func check_grid(rect: Rect2i) -> bool:
 	var r := Rect2i(Vector2i.ZERO, size)
-	if !r.has_point(rect.end) or !r.has_point(rect.position): return false
+	if not r.encloses(rect):
+		return false
 	for cx in range(rect.position.x, rect.end.x):
 		for ry in range(rect.position.y, rect.end.y):
-			if grid[cx][ry]: return false
+			if grid[cx][ry]:
+				return false
 	return true
+
+# gets the first filled
+# dumb search, doesnt rearrange stuff
+func get_first_free(item_size: Vector2i) -> Vector2i:
+	if item_size.x > size.x or item_size.y > size.y:
+		return Vector2i(-1, -1)
+
+	for cx in grid.size() - item_size.x + 1:
+		for ry in grid[cx].size() - item_size.y + 1:
+			if check_grid(Rect2i(Vector2i(cx, ry), item_size)):
+				return Vector2i(cx, ry)
+	return Vector2i(-1, -1)
 
 # sets an rect with filled
 func set_area(rect:Rect2i, filled:bool):
@@ -88,21 +114,13 @@ func set_area(rect:Rect2i, filled:bool):
 		for ry in range(rect.position.y, rect.end.y):
 			grid[cx][ry] = filled
 
-# gets the first filled
-# dumb search, doesnt rearrange stuff
-func get_first_free(item_size:Vector2i) -> Vector2i:
-	if item_size.x > size.x or item_size.y > size.y: return Vector2i(-1, -1)
-
-	for cx in grid.size() - item_size.x:
-		for ry in grid[cx].size() - item_size.y:
-			if check_grid(Rect2i(Vector2i(cx, ry), item_size)):
-				return Vector2i(cx, ry)
-	return Vector2i(-1, -1)
-
 func get_mass() -> float:
 	var sum := 0.0
 	for item in items:
-		sum += item.mass
+		if item is ContainerItem:
+			sum += item.net_mass
+		else:
+			sum += item.mass
 	return sum
 
 func get_container_items() -> Array[ContainerItem]:

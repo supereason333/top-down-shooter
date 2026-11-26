@@ -8,7 +8,10 @@ class_name ItemData
 @export var display_name:String
 @export var mass:float = 0.1
 
-var id:StringName
+@export_storage var id:StringName
+
+func get_master() -> ItemMasterData:
+	return Global.item_lib.get_master(id)
 
 func _item_initialise() -> void:
 	pass

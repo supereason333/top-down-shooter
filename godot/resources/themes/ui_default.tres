@@ -17,6 +17,8 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.38738903, 0.387389, 0.38738889, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7suek"]
+
 [resource]
 GridPanel/base_type = &"Panel"
 GridPanel/styles/panel = SubResource("StyleBoxFlat_7suek")
@@ -25,6 +27,8 @@ HoverButtonPanel/styles/panel = SubResource("StyleBoxFlat_s8dbs")
 InventoryGrid/base_type = &"GridContainer"
 InventoryGrid/constants/h_separation = 0
 InventoryGrid/constants/v_separation = 0
+InvisPanel/base_type = &"PanelContainer"
+InvisPanel/styles/panel = SubResource("StyleBoxEmpty_7suek")
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10

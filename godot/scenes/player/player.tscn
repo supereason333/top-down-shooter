@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://0ghsfj13nmiv" path="res://resources/themes/ui_default.tres" id="10_gx1jg"]
 [ext_resource type="Script" uid="uid://cs522qwhcipw" path="res://scripts/player/gui/inventory/inventory.gd" id="11_gx1jg"]
 [ext_resource type="Script" uid="uid://d2kmikqpa3ai8" path="res://scripts/player/gui/inventory/body_equipped.gd" id="12_fm80t"]
+[ext_resource type="Script" uid="uid://4yxgo50c321d" path="res://scripts/player/gui/inventory/inventory_containers.gd" id="12_ugbui"]
 [ext_resource type="PackedScene" uid="uid://osckj4xj15i" path="res://scenes/player/gui/hover_button.tscn" id="13_gx1jg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
@@ -77,6 +78,7 @@ max_force = 30000.0
 unique_name_in_owner = true
 script = ExtResource("2_qek5x")
 body_containers = Array[ExtResource("3_je7p5")]([SubResource("Resource_fm80t"), SubResource("Resource_gx1jg"), SubResource("Resource_ugbui"), SubResource("Resource_fcs02"), SubResource("Resource_myrg7")])
+preload_items = Array[StringName]([&"test_container", &"test_container", &"gun", &"counter", &"test_container_small"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246572661]
 physics_interpolation_mode = 2
@@ -240,175 +242,88 @@ mouse_filter = 2
 theme = ExtResource("10_gx1jg")
 script = ExtResource("11_gx1jg")
 
-[node name="InventoryMain" type="VBoxContainer" parent="CanvasLayer/Inventory" unique_id=180275129]
+[node name="InventoryContainers" type="VBoxContainer" parent="CanvasLayer/Inventory" unique_id=180275129]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 260.0
+script = ExtResource("12_ugbui")
 
-[node name="ContainerTabs" type="HBoxContainer" parent="CanvasLayer/Inventory/InventoryMain" unique_id=404386281]
+[node name="ContainerTabs" type="HBoxContainer" parent="CanvasLayer/Inventory/InventoryContainers" unique_id=404386281]
 layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="Button" type="Button" parent="CanvasLayer/Inventory/InventoryMain/ContainerTabs" unique_id=554982711]
+[node name="HoverButton" parent="CanvasLayer/Inventory/InventoryContainers/ContainerTabs" unique_id=759224928 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
-text = "bag 1"
+size_flags_horizontal = 1
 
-[node name="Button2" type="Button" parent="CanvasLayer/Inventory/InventoryMain/ContainerTabs" unique_id=2051570814]
+[node name="HoverButton2" parent="CanvasLayer/Inventory/InventoryContainers/ContainerTabs" unique_id=496045975 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
-text = "bag 2"
+size_flags_horizontal = 1
 
-[node name="Button3" type="Button" parent="CanvasLayer/Inventory/InventoryMain/ContainerTabs" unique_id=369087110]
+[node name="HoverButton3" parent="CanvasLayer/Inventory/InventoryContainers/ContainerTabs" unique_id=2116444668 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
-text = "bag 3"
+size_flags_horizontal = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory/InventoryMain" unique_id=689913872]
+[node name="ContainerLabel" type="Label" parent="CanvasLayer/Inventory/InventoryContainers" unique_id=689913872]
 layout_mode = 2
 text = "Bag 1"
 
-[node name="Inventory" type="GridContainer" parent="CanvasLayer/Inventory/InventoryMain" unique_id=1730555326]
+[node name="ClearPanel" type="PanelContainer" parent="CanvasLayer/Inventory/InventoryContainers" unique_id=984584855]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
+theme_type_variation = &"InvisPanel"
+
+[node name="ContainerDisplay" type="GridContainer" parent="CanvasLayer/Inventory/InventoryContainers/ClearPanel" unique_id=2125035439]
+layout_mode = 2
+size_flags_horizontal = 8
 theme_type_variation = &"InventoryGrid"
-columns = 5
+columns = 3
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1557436276]
+[node name="Panel" type="Panel" parent="CanvasLayer/Inventory/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=127267530]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=283816902]
+[node name="Panel2" type="Panel" parent="CanvasLayer/Inventory/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=2055356616]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1709560896]
+[node name="Panel3" type="Panel" parent="CanvasLayer/Inventory/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=1153689059]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1008187524]
+[node name="Panel4" type="Panel" parent="CanvasLayer/Inventory/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=2144214831]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel5" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=875478212]
+[node name="Panel5" type="Panel" parent="CanvasLayer/Inventory/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=429245522]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel6" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=760105898]
+[node name="Panel6" type="Panel" parent="CanvasLayer/Inventory/InventoryContainers/ClearPanel/ContainerDisplay" unique_id=4602628]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel7" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1019157023]
-custom_minimum_size = Vector2(64, 64)
+[node name="ItemOverlay" type="Control" parent="CanvasLayer/Inventory/InventoryContainers/ClearPanel" unique_id=1377291850]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel8" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1719965990]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel9" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1956432589]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel10" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1698557176]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel11" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=961812782]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel12" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=293207548]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel13" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1892044611]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel14" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1617586871]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel15" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1150434694]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel16" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1949375301]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel17" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=753346279]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel18" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=764775087]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel19" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=380520997]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
-
-[node name="Panel20" type="Panel" parent="CanvasLayer/Inventory/InventoryMain/Inventory" unique_id=1497873255]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = &"GridPanel"
 
 [node name="Equipped" type="VBoxContainer" parent="CanvasLayer/Inventory" unique_id=1736286810]
 layout_mode = 1
@@ -669,7 +584,7 @@ script = ExtResource("12_fm80t")
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="HoverButton" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=759224928 instance=ExtResource("13_gx1jg")]
+[node name="HoverButton" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=1293190181 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
 
 [node name="HoverButton2" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=1955092396 instance=ExtResource("13_gx1jg")]
@@ -683,53 +598,67 @@ layout_mode = 2
 text = "Head"
 horizontal_alignment = 2
 
-[node name="ContainerDisplay" type="GridContainer" parent="CanvasLayer/Inventory/BodyEquipped" unique_id=450799752]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/BodyEquipped/NameLabel" unique_id=483526471]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ClearPanel" type="PanelContainer" parent="CanvasLayer/Inventory/BodyEquipped" unique_id=472787188]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+theme_type_variation = &"InvisPanel"
+
+[node name="ContainerDisplay" type="GridContainer" parent="CanvasLayer/Inventory/BodyEquipped/ClearPanel" unique_id=450799752]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_type_variation = &"InventoryGrid"
 columns = 3
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=893469711]
+[node name="Panel" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=893469711]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=1451022333]
+[node name="Panel2" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=1451022333]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=2003834319]
+[node name="Panel3" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=2003834319]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=1711284920]
+[node name="Panel4" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=1711284920]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel5" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=346422368]
+[node name="Panel5" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=346422368]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel6" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=1379570256]
+[node name="Panel6" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ClearPanel/ContainerDisplay" unique_id=1379570256]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
+
+[node name="ItemOverlay" type="Control" parent="CanvasLayer/Inventory/BodyEquipped/ClearPanel" unique_id=224746118]
+layout_mode = 2
 
 [node name="OverrideUI" type="Control" parent="CanvasLayer" unique_id=1436547314]
 visible = false

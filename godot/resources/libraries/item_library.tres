@@ -7,14 +7,18 @@
 [ext_resource type="Script" uid="uid://ccmmrvuixoi4k" path="res://scripts/item_system/item_scripts/counter_item_res.gd" id="3_l6rrl"]
 [ext_resource type="PackedScene" uid="uid://dwyo3ihhn40r" path="res://scenes/items/gun_item.tscn" id="4_js284"]
 [ext_resource type="Script" uid="uid://g4jg6b7fltqd" path="res://scripts/item_system/item_scripts/gun_item_res.gd" id="5_jhwnd"]
+[ext_resource type="Script" uid="uid://ukpbupg5i0g4" path="res://scripts/item_system/class_scripts/item_container.gd" id="7_1kvoi"]
+[ext_resource type="Texture2D" uid="uid://bie8k0hkms4ma" path="res://assets/icon.svg" id="7_xmsor"]
+[ext_resource type="Script" uid="uid://duuvryyvvhlc8" path="res://scripts/item_system/class_scripts/container_item.gd" id="8_xmsor"]
 
 [sub_resource type="Resource" id="Resource_v115c"]
 script = ExtResource("1_jhwnd")
 id = &"counter"
 item_scene = ExtResource("2_h0kve")
+inventory_icon = ExtResource("7_xmsor")
 metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
 
-[sub_resource type="Resource" id="Resource_1kvoi"]
+[sub_resource type="Resource" id="Resource_05xdy"]
 script = ExtResource("3_l6rrl")
 display_name = "Counter"
 metadata/_custom_type_script = "uid://ccmmrvuixoi4k"
@@ -23,18 +27,58 @@ metadata/_custom_type_script = "uid://ccmmrvuixoi4k"
 script = ExtResource("1_jhwnd")
 id = &"gun"
 item_scene = ExtResource("4_js284")
+inventory_icon = ExtResource("7_xmsor")
 tags = Array[int]([1])
 metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
 
-[sub_resource type="Resource" id="Resource_05xdy"]
+[sub_resource type="Resource" id="Resource_vvl67"]
 script = ExtResource("5_jhwnd")
 display_name = "Gun"
 metadata/_custom_type_script = "uid://g4jg6b7fltqd"
 
+[sub_resource type="Resource" id="Resource_d7p1t"]
+script = ExtResource("1_jhwnd")
+id = &"test_container"
+inventory_icon = ExtResource("7_xmsor")
+size = Vector2i(2, 2)
+metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
+
+[sub_resource type="Resource" id="Resource_qlpoh"]
+script = ExtResource("7_1kvoi")
+name = "Test Container Items"
+size = Vector2i(5, 7)
+metadata/_custom_type_script = "uid://ukpbupg5i0g4"
+
+[sub_resource type="Resource" id="Resource_e80q0"]
+script = ExtResource("8_xmsor")
+container = SubResource("Resource_qlpoh")
+display_name = "Test Container"
+metadata/_custom_type_script = "uid://duuvryyvvhlc8"
+
+[sub_resource type="Resource" id="Resource_dneyk"]
+script = ExtResource("1_jhwnd")
+id = &"test_container_small"
+inventory_icon = ExtResource("7_xmsor")
+size = Vector2i(1, 2)
+metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
+
+[sub_resource type="Resource" id="Resource_wptjr"]
+script = ExtResource("7_1kvoi")
+name = "Test Small Container"
+size = Vector2i(3, 6)
+metadata/_custom_type_script = "uid://ukpbupg5i0g4"
+
+[sub_resource type="Resource" id="Resource_vfdf0"]
+script = ExtResource("8_xmsor")
+container = SubResource("Resource_wptjr")
+metadata/_custom_type_script = "uid://duuvryyvvhlc8"
+
 [resource]
 script = ExtResource("2_0qfbg")
 lib = Dictionary[ExtResource("1_jhwnd"), ExtResource("1_p8ygr")]({
-SubResource("Resource_v115c"): SubResource("Resource_1kvoi"),
-SubResource("Resource_xmsor"): SubResource("Resource_05xdy")
+SubResource("Resource_v115c"): SubResource("Resource_05xdy"),
+SubResource("Resource_xmsor"): SubResource("Resource_vvl67"),
+SubResource("Resource_d7p1t"): SubResource("Resource_e80q0"),
+SubResource("Resource_dneyk"): SubResource("Resource_vfdf0")
 })
 metadata/_custom_type_script = "uid://bt51drjury4kt"

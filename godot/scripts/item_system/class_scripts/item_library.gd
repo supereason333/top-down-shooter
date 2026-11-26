@@ -18,9 +18,10 @@ func initialize():
 			printerr("Item %s seen twice" % item.id)
 			continue
 		item.id = master.id
-
-		lookup[master.id] = item
-		master_lookup[master.id] = master
+		# lookup[master.id] = item
+		lookup.set(master.id, item)
+		# master_lookup[master.id] = master
+		master_lookup.set(master.id, master)
 		registered += 1
 
 	var elapsed_usec := Time.get_ticks_usec() - start_usec
