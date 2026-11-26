@@ -23,6 +23,7 @@ metadata/_custom_type_script = "uid://ccmmrvuixoi4k"
 script = ExtResource("1_jhwnd")
 id = &"gun"
 item_scene = ExtResource("4_js284")
+tags = Array[int]([1])
 metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
 
 [sub_resource type="Resource" id="Resource_05xdy"]

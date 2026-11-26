@@ -2,8 +2,12 @@ extends Resource
 class_name ItemContainer
 
 signal items_changed
+signal item_added(item:ItemData)
+signal item_removed(item:ItemData)
 
+@export var name:String
 @export var size:Vector2i
+@export var allow_containers:bool = false
 
 var items:Array[ItemData]
 var item_rects:Array[Rect2i]
@@ -17,6 +21,7 @@ func _init() -> void:
 
 # Adds to the container, at the selected position else random
 func add_item(item:ItemData, pos:Vector2i = Vector2i(-1, -1)) -> bool:
+	if item is ContainerItem and !allow_containers: return false
 	var rect:Rect2i
 	if pos == Vector2i(-1, -1):
 		pos = get_first_free(item.size)
@@ -30,6 +35,7 @@ func add_item(item:ItemData, pos:Vector2i = Vector2i(-1, -1)) -> bool:
 	items.append(item)
 	item_rects.append(rect)
 	items_changed.emit()
+	item_added.emit(item)
 	return true
 
 # gets ref to item
@@ -56,6 +62,7 @@ func remove_item(i:int) -> ItemData:
 	item_rects.remove_at(i)
 	set_area(rect, false)
 	items_changed.emit()
+	item_removed.emit(item)
 	return item
 
 # gets ref and removes from container
@@ -97,3 +104,10 @@ func get_mass() -> float:
 	for item in items:
 		sum += item.mass
 	return sum
+
+func get_container_items() -> Array[ContainerItem]:
+	var arr:Array[ContainerItem]
+	for item in items:
+		if item is ContainerItem:
+			arr.append(item)
+	return arr

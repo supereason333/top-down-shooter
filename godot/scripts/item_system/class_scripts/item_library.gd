@@ -17,6 +17,8 @@ func initialize():
 		if seen.has(master.id):
 			printerr("Item %s seen twice" % item.id)
 			continue
+		item.id = master.id
+
 		lookup[master.id] = item
 		master_lookup[master.id] = master
 		registered += 1

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://osckj4xj15i"]
+
+[ext_resource type="Script" uid="uid://cqa5fcfkkhoye" path="res://scripts/player/gui/hover_button.gd" id="1_f21k3"]
+
+[node name="HoverButton" type="PanelContainer" unique_id=759224928]
+size_flags_horizontal = 3
+theme_type_variation = &"HoverButtonPanel"
+script = ExtResource("1_f21k3")
+
+[node name="Label" type="Label" parent="." unique_id=262119200]
+layout_mode = 2
+text = "leg"
+horizontal_alignment = 1

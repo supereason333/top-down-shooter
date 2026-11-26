@@ -7,3 +7,8 @@ class_name ItemData
 
 @export var display_name:String
 @export var mass:float = 0.1
+
+var id:StringName
+
+func _item_initialise() -> void:
+	pass

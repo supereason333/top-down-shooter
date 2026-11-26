@@ -13,3 +13,7 @@ func _unload_into_data(_data:ItemData):
 ## input passed onto the item from whatever thing is holding it.
 func _item_input(_event:InputEvent):
 	pass
+
+## used by the initializing to check whether the expected data type is stored in the
+func _check_data_type(_data:ItemData) -> bool:
+	return false

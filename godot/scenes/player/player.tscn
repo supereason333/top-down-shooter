@@ -5,14 +5,52 @@
 [ext_resource type="Script" uid="uid://cr07putyvg8rb" path="res://scripts/player/player_rotate.gd" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://dbktf3ieyi2ny" path="res://scripts/player/inventory.gd" id="2_qek5x"]
 [ext_resource type="Script" uid="uid://cja4qrm7jr227" path="res://scripts/player/camera.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://ukpbupg5i0g4" path="res://scripts/item_system/class_scripts/item_container.gd" id="3_je7p5"]
 [ext_resource type="Script" uid="uid://berlh0k5mygpf" path="res://scripts/player/item_loader.gd" id="4_75vfm"]
 [ext_resource type="Material" uid="uid://dkak10a8awv5" path="res://resources/material/red_unshaded.tres" id="4_lvxji"]
 [ext_resource type="Script" uid="uid://cjk56c4mekcve" path="res://scripts/player/gui/ui_mngr.gd" id="9_h17s1"]
 [ext_resource type="Theme" uid="uid://0ghsfj13nmiv" path="res://resources/themes/ui_default.tres" id="10_gx1jg"]
-[ext_resource type="Script" uid="uid://cs522qwhcipw" path="res://scripts/player/gui/inventory.gd" id="11_gx1jg"]
+[ext_resource type="Script" uid="uid://cs522qwhcipw" path="res://scripts/player/gui/inventory/inventory.gd" id="11_gx1jg"]
+[ext_resource type="Script" uid="uid://d2kmikqpa3ai8" path="res://scripts/player/gui/inventory/body_equipped.gd" id="12_fm80t"]
+[ext_resource type="PackedScene" uid="uid://osckj4xj15i" path="res://scenes/player/gui/hover_button.tscn" id="13_gx1jg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
 friction = 0.52
+
+[sub_resource type="Resource" id="Resource_fm80t"]
+script = ExtResource("3_je7p5")
+name = "Head"
+size = Vector2i(3, 3)
+allow_containers = true
+metadata/_custom_type_script = "uid://ukpbupg5i0g4"
+
+[sub_resource type="Resource" id="Resource_gx1jg"]
+script = ExtResource("3_je7p5")
+name = "Torso"
+size = Vector2i(6, 3)
+allow_containers = true
+metadata/_custom_type_script = "uid://ukpbupg5i0g4"
+
+[sub_resource type="Resource" id="Resource_ugbui"]
+script = ExtResource("3_je7p5")
+name = "Hip"
+size = Vector2i(4, 3)
+allow_containers = true
+metadata/_custom_type_script = "uid://ukpbupg5i0g4"
+
+[sub_resource type="Resource" id="Resource_fcs02"]
+script = ExtResource("3_je7p5")
+name = "Leg"
+size = Vector2i(3, 3)
+allow_containers = true
+metadata/_custom_type_script = "uid://ukpbupg5i0g4"
+
+[sub_resource type="Resource" id="Resource_myrg7"]
+script = ExtResource("3_je7p5")
+name = "Foot"
+size = Vector2i(3, 3)
+allow_containers = true
+metadata/_custom_type_script = "uid://ukpbupg5i0g4"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dovo2"]
 radius = 0.20800781
@@ -38,6 +76,7 @@ max_force = 30000.0
 [node name="Inventory" type="Node" parent="." unique_id=1910172178]
 unique_name_in_owner = true
 script = ExtResource("2_qek5x")
+body_containers = Array[ExtResource("3_je7p5")]([SubResource("Resource_fm80t"), SubResource("Resource_gx1jg"), SubResource("Resource_ugbui"), SubResource("Resource_fcs02"), SubResource("Resource_myrg7")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246572661]
 physics_interpolation_mode = 2
@@ -622,78 +661,70 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -192.0
-offset_bottom = 155.0
+offset_bottom = 188.0
 grow_horizontal = 0
+script = ExtResource("12_fm80t")
 
 [node name="PartTab" type="HBoxContainer" parent="CanvasLayer/Inventory/BodyEquipped" unique_id=1747778896]
 layout_mode = 2
+size_flags_horizontal = 8
 
-[node name="Button" type="Button" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=1265276945]
+[node name="HoverButton" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=759224928 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "head"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=1971022817]
+[node name="HoverButton2" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=1955092396 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "torso"
 
-[node name="Button3" type="Button" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=1049277680]
+[node name="HoverButton3" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=1160947824 instance=ExtResource("13_gx1jg")]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "legs"
 
-[node name="Button4" type="Button" parent="CanvasLayer/Inventory/BodyEquipped/PartTab" unique_id=1593726691]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "foot"
-
-[node name="Label" type="Label" parent="CanvasLayer/Inventory/BodyEquipped" unique_id=486242289]
+[node name="NameLabel" type="Label" parent="CanvasLayer/Inventory/BodyEquipped" unique_id=486242289]
 layout_mode = 2
 text = "Head"
 horizontal_alignment = 2
 
-[node name="SlotDisplay" type="GridContainer" parent="CanvasLayer/Inventory/BodyEquipped" unique_id=450799752]
+[node name="ContainerDisplay" type="GridContainer" parent="CanvasLayer/Inventory/BodyEquipped" unique_id=450799752]
 layout_mode = 2
+size_flags_horizontal = 8
 theme_type_variation = &"InventoryGrid"
 columns = 3
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/SlotDisplay" unique_id=893469711]
+[node name="Panel" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=893469711]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/SlotDisplay" unique_id=1451022333]
+[node name="Panel2" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=1451022333]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/SlotDisplay" unique_id=2003834319]
+[node name="Panel3" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=2003834319]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/SlotDisplay" unique_id=1711284920]
+[node name="Panel4" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=1711284920]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel5" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/SlotDisplay" unique_id=346422368]
+[node name="Panel5" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=346422368]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel6" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/SlotDisplay" unique_id=1379570256]
+[node name="Panel6" type="Panel" parent="CanvasLayer/Inventory/BodyEquipped/ContainerDisplay" unique_id=1379570256]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
