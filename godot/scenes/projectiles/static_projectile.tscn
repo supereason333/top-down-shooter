@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cfi65pammou1x"]
+
+[ext_resource type="Script" uid="uid://bccvsiv527rng" path="res://scripts/projectile_system/class_scripts/projectile_base.gd" id="1_fgdux"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fgdux"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="StaticProjectile" type="Node3D" unique_id=1645897093]
+script = ExtResource("1_fgdux")
+metadata/_custom_type_script = "uid://bccvsiv527rng"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1364359340]
+mesh = SubResource("BoxMesh_fgdux")

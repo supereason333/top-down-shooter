@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bmsqihjioxtx5" path="res://scripts/autoloads/global.gd" id="1_0qrgx"]
 [ext_resource type="Resource" uid="uid://bnvnijwulb12l" path="res://resources/libraries/item_library.tres" id="2_c0f45"]
+[ext_resource type="Resource" uid="uid://bnk3t1h167b37" path="res://resources/libraries/projectile_library.tres" id="3_deew3"]
 
 [node name="Global" type="Node" unique_id=442125816]
 script = ExtResource("1_0qrgx")
 item_lib = ExtResource("2_c0f45")
+projectile_lib = ExtResource("3_deew3")

@@ -133,8 +133,9 @@ bones/62/position = Vector3(-2.9143354e-16, 0.42099023, -6.2450045e-16)
 bones/63/position = Vector3(1.3877788e-17, 0.1572156, 1.3877788e-17)
 
 [node name="ItemLoader" type="Node3D" parent="Rotate" unique_id=128255414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2151066, -0.3134039)
 script = ExtResource("4_75vfm")
-id = &"counter"
+id = &"gun"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1944815126 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 2

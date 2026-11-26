@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ProjectileLibrary" format=3 uid="uid://bnk3t1h167b37"]
+
+[ext_resource type="Script" uid="uid://d2x221ub3jmfl" path="res://scripts/projectile_system/class_scripts/projectile_resource_base.gd" id="1_ex5f7"]
+[ext_resource type="Script" uid="uid://cf5ybxpeitdgx" path="res://scripts/projectile_system/class_scripts/projectile_library.gd" id="2_c5877"]
+[ext_resource type="PackedScene" uid="uid://cfi65pammou1x" path="res://scenes/projectiles/static_projectile.tscn" id="2_e5may"]
+
+[sub_resource type="Resource" id="Resource_ocgre"]
+script = ExtResource("1_ex5f7")
+name = "Static Projectile"
+id = &"static"
+scene = ExtResource("2_e5may")
+metadata/_custom_type_script = "uid://d2x221ub3jmfl"
+
+[resource]
+script = ExtResource("2_c5877")
+lib = Array[ExtResource("1_ex5f7")]([SubResource("Resource_ocgre")])
+metadata/_custom_type_script = "uid://cf5ybxpeitdgx"

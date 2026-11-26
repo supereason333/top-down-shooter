@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://t8j5gkqmsyg7"]
 
+[ext_resource type="Script" uid="uid://bl41wo4tj4o48" path="res://scripts/world/world.gd" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cf0bmrhgluk3u" path="res://scenes/player/player.tscn" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://vicgaoono61g" path="res://scripts/world/projectile_mngr.gd" id="2_k0juu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -37,7 +39,10 @@ size = Vector3(1, 2, 1)
 size = Vector3(1, 2, 1)
 
 [node name="World" type="Node3D" unique_id=694485405]
-physics_interpolation_mode = 2
+script = ExtResource("1_4wyf3")
+
+[node name="ProjectilesMngr" type="Node3D" parent="." unique_id=373267634]
+script = ExtResource("2_k0juu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1960444622]
 environment = SubResource("Environment_fj7yv")

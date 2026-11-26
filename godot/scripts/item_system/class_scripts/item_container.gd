@@ -1,6 +1,8 @@
 extends Resource
 class_name ItemContainer
 
+signal items_changed
+
 @export var size:Vector2i
 
 var items:Array[ItemData]
@@ -27,6 +29,7 @@ func add_item(item:ItemData, pos:Vector2i = Vector2i(-1, -1)) -> bool:
 	set_area(rect, true)
 	items.append(item)
 	item_rects.append(rect)
+	items_changed.emit()
 	return true
 
 # gets ref to item
@@ -52,6 +55,7 @@ func remove_item(i:int) -> ItemData:
 	items.remove_at(i)
 	item_rects.remove_at(i)
 	set_area(rect, false)
+	items_changed.emit()
 	return item
 
 # gets ref and removes from container

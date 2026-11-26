@@ -10,6 +10,8 @@ It is suppose to be a top down extraction shooter esque game made in godot where
   - Item pickups
 - Make inventory system
   - Bag containers
+    - base class x
+    - display in ui
   - Chests / storage
 - Projectiles
   - Instantiate from ID
