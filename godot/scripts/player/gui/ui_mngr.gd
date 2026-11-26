@@ -2,7 +2,7 @@ extends CanvasLayer
 class_name UiMngr
 
 @onready var hud:Control = $HUD
-@onready var inventory:Control = $Inventory
+@onready var inventory:Control = %InventoryUIRoot
 @onready var override_ui:Control = $OverrideUI
 
 var controls:Array[Control]
