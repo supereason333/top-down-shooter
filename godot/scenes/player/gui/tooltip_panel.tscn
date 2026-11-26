@@ -45,3 +45,13 @@ expand_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "None"
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBox/DataDisp" unique_id=541666235]
+layout_mode = 2
+texture = ExtResource("1_nj4qs")
+expand_mode = 2
+
+[node name="MassLabel" type="Label" parent="MarginContainer/VBox/DataDisp" unique_id=187001991]
+unique_name_in_owner = true
+layout_mode = 2
+text = "None"

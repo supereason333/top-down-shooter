@@ -75,14 +75,12 @@ func _on_item_added(item:ItemData, container:int):
 	if item is ContainerItem:
 		stored_containers.append(item)
 		container_added.emit(item)
-		print("ADDED EMIT")
 
 func _on_item_removed(item:ItemData, container:int):
 	body_item_removed.emit(item, container)
 	if item is ContainerItem:
 		stored_containers.erase(item)
 		container_removed.emit(item)
-		print("REMOVED EMIT")
 
 func _on_container_added(container:ContainerItem) -> void:
 	pass
