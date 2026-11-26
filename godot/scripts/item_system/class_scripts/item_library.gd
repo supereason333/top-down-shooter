@@ -1,21 +1,24 @@
 extends Resource
 class_name ItemLibrary
 
-@export var lib:Array[ItemData]
+@export var lib:Dictionary[ItemMasterData, ItemData]
 
+var master_lookup:Dictionary[StringName, ItemMasterData]
 var lookup:Dictionary[StringName, ItemData]
 
 func initialize():
+	pass
 	print("Initializing item library")
 	var start_usec := Time.get_ticks_usec()
 	var seen:Array[StringName]
 	var registered := 0
-	for i in lib.size():
-		var item := lib[i]
-		if seen.has(item.id):
+	for master in lib.keys():
+		var item := lib[master]
+		if seen.has(master.id):
 			printerr("Item %s seen twice" % item.id)
 			continue
-		lookup[item.id] = item
+		lookup[master.id] = item
+		master_lookup[master.id] = master
 		registered += 1
 
 	var elapsed_usec := Time.get_ticks_usec() - start_usec
@@ -28,3 +31,6 @@ func get_new(id:StringName) -> ItemData:
 	if new:
 		return new.duplicate_deep()
 	return null
+
+func get_master(id:StringName) -> ItemMasterData:
+	return master_lookup.get(id)

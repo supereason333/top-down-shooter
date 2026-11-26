@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cmyxlsg05k5w3" path="res://scripts/player/player.gd" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://cr07putyvg8rb" path="res://scripts/player/player_rotate.gd" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://dbktf3ieyi2ny" path="res://scripts/player/inventory.gd" id="2_qek5x"]
-[ext_resource type="Script" uid="uid://dvxu8ecpvnmbu" path="res://scripts/player/equip_slot.gd" id="3_5gtgg"]
 [ext_resource type="Script" uid="uid://cja4qrm7jr227" path="res://scripts/player/camera.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://berlh0k5mygpf" path="res://scripts/player/item_loader.gd" id="4_75vfm"]
 [ext_resource type="Material" uid="uid://dkak10a8awv5" path="res://resources/material/red_unshaded.tres" id="4_lvxji"]
@@ -39,9 +38,6 @@ max_force = 30000.0
 [node name="Inventory" type="Node" parent="." unique_id=1910172178]
 unique_name_in_owner = true
 script = ExtResource("2_qek5x")
-
-[node name="EquipSlot" type="Node" parent="Inventory" unique_id=101002744]
-script = ExtResource("3_5gtgg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246572661]
 physics_interpolation_mode = 2
@@ -148,6 +144,7 @@ bones/63/position = Vector3(1.3877788e-17, 0.1572156, 1.3877788e-17)
 [node name="ItemLoader" type="Node3D" parent="Rotate" unique_id=128255414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2151066, -0.3134039)
 script = ExtResource("4_75vfm")
+id = &"counter"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1944815126 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 2

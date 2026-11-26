@@ -6,9 +6,10 @@ var loaded:Item3D
 var item:ItemData
 
 func _ready() -> void:
+	var master = Global.item_lib.get_master(id)
 	item = Global.item_lib.get_new(id)
-	if !item: return
-	var node:Item3D = item.item_scene.instantiate()
+	if !master or !item: return
+	var node:Item3D = master.item_scene.instantiate()
 	add_child(node)
 	node._load_from_data(item)
 	loaded = node

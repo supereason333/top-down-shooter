@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ItemLibrary" format=3 uid="uid://bnvnijwulb12l"]
 
+[ext_resource type="Script" uid="uid://cbjx6e4un0qvh" path="res://scripts/item_system/class_scripts/item_master_data.gd" id="1_jhwnd"]
 [ext_resource type="Script" uid="uid://buhxri6bk3fob" path="res://scripts/item_system/class_scripts/item_data_base.gd" id="1_p8ygr"]
 [ext_resource type="Script" uid="uid://bt51drjury4kt" path="res://scripts/item_system/class_scripts/item_library.gd" id="2_0qfbg"]
 [ext_resource type="PackedScene" uid="uid://e5qwpptqs4sv" path="res://scenes/items/counter_item.tscn" id="2_h0kve"]
@@ -7,22 +8,32 @@
 [ext_resource type="PackedScene" uid="uid://dwyo3ihhn40r" path="res://scenes/items/gun_item.tscn" id="4_js284"]
 [ext_resource type="Script" uid="uid://g4jg6b7fltqd" path="res://scripts/item_system/item_scripts/gun_item_res.gd" id="5_jhwnd"]
 
-[sub_resource type="Resource" id="Resource_js284"]
-script = ExtResource("3_l6rrl")
-display_name = "Counter"
+[sub_resource type="Resource" id="Resource_v115c"]
+script = ExtResource("1_jhwnd")
 id = &"counter"
 item_scene = ExtResource("2_h0kve")
+metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
+
+[sub_resource type="Resource" id="Resource_1kvoi"]
+script = ExtResource("3_l6rrl")
+display_name = "Counter"
 metadata/_custom_type_script = "uid://ccmmrvuixoi4k"
 
-[sub_resource type="Resource" id="Resource_v115c"]
-script = ExtResource("5_jhwnd")
-display_name = "Gun"
+[sub_resource type="Resource" id="Resource_xmsor"]
+script = ExtResource("1_jhwnd")
 id = &"gun"
 item_scene = ExtResource("4_js284")
-size = Vector2i(2, 1)
+metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
+
+[sub_resource type="Resource" id="Resource_05xdy"]
+script = ExtResource("5_jhwnd")
+display_name = "Gun"
 metadata/_custom_type_script = "uid://g4jg6b7fltqd"
 
 [resource]
 script = ExtResource("2_0qfbg")
-lib = Array[ExtResource("1_p8ygr")]([SubResource("Resource_js284"), SubResource("Resource_v115c")])
+lib = Dictionary[ExtResource("1_jhwnd"), ExtResource("1_p8ygr")]({
+SubResource("Resource_v115c"): SubResource("Resource_1kvoi"),
+SubResource("Resource_xmsor"): SubResource("Resource_05xdy")
+})
 metadata/_custom_type_script = "uid://bt51drjury4kt"
