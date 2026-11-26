@@ -11,6 +11,7 @@ signal item_removed(item:ItemData)
 		size = value
 		_build_grid()
 @export var allow_containers:bool = false
+@export var filter:ItemFilter
 
 var items:Array[ItemData]
 var item_rects:Array[Rect2i]
@@ -25,8 +26,9 @@ func _build_grid() -> void:
 ## chekcs the criteria for the container to see whether item can be added or not,
 ## if checking location use check_grid
 func can_add(item:ItemData) -> bool:
-	if allow_containers: return true
-	if item is ContainerItem: return false
+	if item is ContainerItem:
+		if !allow_containers: return false
+	if filter: return filter.filter(item.id)
 	return true
 
 # Adds to the container, at the selected position else random

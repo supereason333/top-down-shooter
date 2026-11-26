@@ -41,6 +41,7 @@ script = ExtResource("1_jhwnd")
 id = &"test_container"
 inventory_icon = ExtResource("7_xmsor")
 size = Vector2i(2, 2)
+tags = Array[int]([3])
 metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
 
 [sub_resource type="Resource" id="Resource_qlpoh"]
@@ -60,6 +61,7 @@ script = ExtResource("1_jhwnd")
 id = &"test_container_small"
 inventory_icon = ExtResource("7_xmsor")
 size = Vector2i(1, 2)
+tags = Array[int]([4])
 metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
 
 [sub_resource type="Resource" id="Resource_wptjr"]
