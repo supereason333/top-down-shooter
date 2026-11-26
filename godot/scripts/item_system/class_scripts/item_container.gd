@@ -91,3 +91,9 @@ func get_first_free(item_size:Vector2i) -> Vector2i:
 			if check_grid(Rect2i(Vector2i(cx, ry), item_size)):
 				return Vector2i(cx, ry)
 	return Vector2i(-1, -1)
+
+func get_mass() -> float:
+	var sum := 0.0
+	for item in items:
+		sum += item.mass
+	return sum

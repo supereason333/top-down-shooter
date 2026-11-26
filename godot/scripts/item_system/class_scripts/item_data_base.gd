@@ -11,4 +11,4 @@ class_name ItemData
 @export var inventory_icon:Texture
 @export var icon_small:Texture
 @export var size:Vector2i = Vector2i.ONE
-@export var weight:float = 1
+@export var mass:float = 0.1

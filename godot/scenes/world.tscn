@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bl41wo4tj4o48" path="res://scripts/world/world.gd" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cf0bmrhgluk3u" path="res://scenes/player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://vicgaoono61g" path="res://scripts/world/projectile_mngr.gd" id="2_k0juu"]
+[ext_resource type="PackedScene" uid="uid://bbtlv40mjnrgo" path="res://scenes/item_stuff/item_pickup.tscn" id="4_k0juu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -71,3 +72,7 @@ mesh = SubResource("BoxMesh_nnsk1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=1091521318]
 shape = SubResource("BoxShape3D_nnsk1")
+
+[node name="ItemPickup" parent="." unique_id=19798014 instance=ExtResource("4_k0juu")]
+transform = Transform3D(0.72162694, -0.29859784, 0.62457496, 0.38234478, 0.92401975, 0, -0.5771196, 0.23880297, 0.78096485, 3.8451424, 1, 2.245115)
+preloaded_item = &"gun"

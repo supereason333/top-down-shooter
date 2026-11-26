@@ -3,9 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://c24yl51b4lleb" path="res://assets/models/player/Y Bot.fbx" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cmyxlsg05k5w3" path="res://scripts/player/player.gd" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://cr07putyvg8rb" path="res://scripts/player/player_rotate.gd" id="2_p47bc"]
+[ext_resource type="Script" uid="uid://dbktf3ieyi2ny" path="res://scripts/player/inventory.gd" id="2_qek5x"]
+[ext_resource type="Script" uid="uid://dvxu8ecpvnmbu" path="res://scripts/player/equip_slot.gd" id="3_5gtgg"]
 [ext_resource type="Script" uid="uid://cja4qrm7jr227" path="res://scripts/player/camera.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://berlh0k5mygpf" path="res://scripts/player/item_loader.gd" id="4_75vfm"]
 [ext_resource type="Material" uid="uid://dkak10a8awv5" path="res://resources/material/red_unshaded.tres" id="4_lvxji"]
+[ext_resource type="Script" uid="uid://cjk56c4mekcve" path="res://scripts/player/gui/ui_mngr.gd" id="9_h17s1"]
+[ext_resource type="Script" uid="uid://cfwmmow6a2g7g" path="res://scripts/player/gui/inventory_tab_display.gd" id="10_fm80t"]
+[ext_resource type="Theme" uid="uid://0ghsfj13nmiv" path="res://resources/themes/ui_default.tres" id="10_gx1jg"]
+[ext_resource type="PackedScene" uid="uid://cd7wi8018oq35" path="res://scenes/player/gui/container_display.tscn" id="10_je7p5"]
+[ext_resource type="Script" uid="uid://cs522qwhcipw" path="res://scripts/player/gui/inventory.gd" id="11_gx1jg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
 friction = 0.52
@@ -20,6 +27,7 @@ height = 0.1
 
 [node name="Player" type="RigidBody3D" unique_id=363198349]
 physics_interpolation_mode = 1
+collision_layer = 2
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -29,6 +37,13 @@ script = ExtResource("1_dovo2")
 walk_speed = 2.0
 sprint_speed = 4.0
 max_force = 30000.0
+
+[node name="Inventory" type="Node" parent="." unique_id=1910172178]
+unique_name_in_owner = true
+script = ExtResource("2_qek5x")
+
+[node name="EquipSlot" type="Node" parent="Inventory" unique_id=101002744]
+script = ExtResource("3_5gtgg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246572661]
 physics_interpolation_mode = 2
@@ -135,7 +150,6 @@ bones/63/position = Vector3(1.3877788e-17, 0.1572156, 1.3877788e-17)
 [node name="ItemLoader" type="Node3D" parent="Rotate" unique_id=128255414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2151066, -0.3134039)
 script = ExtResource("4_75vfm")
-id = &"gun"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1944815126 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 2
@@ -149,6 +163,7 @@ max_distance = 1.0
 [node name="MouseRay" type="RayCast3D" parent="Camera3D" unique_id=310878212]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 target_position = Vector3(0, -10, 0)
+collision_mask = 5
 
 [node name="MouseMarker" type="MeshInstance3D" parent="Camera3D" unique_id=2060806440]
 physics_interpolation_mode = 1
@@ -156,6 +171,119 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 top_level = true
 mesh = SubResource("SphereMesh_gmlin")
 surface_material_override/0 = ExtResource("4_lvxji")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=209759056]
+script = ExtResource("9_h17s1")
+
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=1908987801]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD" unique_id=232795483]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "hud"
+
+[node name="Inventory" type="Control" parent="CanvasLayer" unique_id=1589711058]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_gx1jg")
+script = ExtResource("11_gx1jg")
+
+[node name="InventoryMain" type="TabContainer" parent="CanvasLayer/Inventory" unique_id=1935402850]
+layout_mode = 1
+offset_right = 356.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+current_tab = 0
+script = ExtResource("10_fm80t")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Inventory/InventoryMain" unique_id=1066391553]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Inventory/InventoryMain/MarginContainer" unique_id=1508617965]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Inventory/InventoryMain/MarginContainer/VBoxContainer" unique_id=1970626850]
+layout_mode = 2
+text = "data, weight etc"
+
+[node name="Bag" parent="CanvasLayer/Inventory/InventoryMain/MarginContainer/VBoxContainer" unique_id=1915039777 instance=ExtResource("10_je7p5")]
+layout_mode = 2
+
+[node name="Containers" type="HBoxContainer" parent="CanvasLayer/Inventory" unique_id=1022720252]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Inventory/Containers" unique_id=1822926493]
+layout_mode = 2
+text = "Bag A"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Inventory/Containers" unique_id=561550161]
+layout_mode = 2
+text = "Bag B"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Inventory/Containers" unique_id=1633518387]
+layout_mode = 2
+text = "Bag C"
+
+[node name="Equipped" type="VBoxContainer" parent="CanvasLayer/Inventory" unique_id=981039871]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Inventory/Equipped" unique_id=15089180]
+layout_mode = 2
+text = "thing"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Inventory/Equipped" unique_id=1112786019]
+layout_mode = 2
+text = "thing"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Inventory/Equipped" unique_id=1142988203]
+layout_mode = 2
+text = "thing"
+
+[node name="Button4" type="Button" parent="CanvasLayer/Inventory/Equipped" unique_id=929803841]
+layout_mode = 2
+text = "thing"
+
+[node name="OverrideUI" type="Control" parent="CanvasLayer" unique_id=1436547314]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="raycast_collision_updated" from="Camera3D" to="Rotate" method="_raycast_collision_changed"]
 
