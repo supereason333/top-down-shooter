@@ -13,5 +13,5 @@ class_name ItemData
 func get_master() -> ItemMasterData:
 	return Global.item_lib.get_master(id)
 
-func _item_initialise() -> void:
+func item_initialize() -> void:
 	pass

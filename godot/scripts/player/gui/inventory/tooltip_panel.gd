@@ -12,6 +12,10 @@ func update(item:ItemData):
 	body_container.show()
 	name_label.text = item.display_name
 	id_label.text = item.id
+	var mass:float = item.net_mass if item is ContainerItem else item.mass
+	if item is ContainerItem:
+
+		print(item.net_mass)
 	mass_label.text = "%s Kg" % (item.net_mass if item is ContainerItem else item.mass)
 
 ## clears the displayed to display nothing

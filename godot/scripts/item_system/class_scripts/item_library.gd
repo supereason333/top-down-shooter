@@ -30,10 +30,11 @@ func initialize():
 	print("Item library initialized in %d msecs" % (elapsed_usec / 1000.0))
 
 func get_new(id:StringName) -> ItemData:
-	var new:ItemData = lookup.get(id)
-	if new:
-		return new.duplicate_deep()
-	return null
+	var base:ItemData = lookup.get(id)
+	if !base: return null
+	var new:ItemData = base.duplicate_deep()
+	new.item_initialize()
+	return new
 
 func get_master(id:StringName) -> ItemMasterData:
 	return master_lookup.get(id)
