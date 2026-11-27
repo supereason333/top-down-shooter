@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://d2kmikqpa3ai8" path="res://scripts/player/gui/inventory/body_equipped.gd" id="12_fm80t"]
 [ext_resource type="Script" uid="uid://4yxgo50c321d" path="res://scripts/player/gui/inventory/inventory_containers.gd" id="12_ugbui"]
 [ext_resource type="PackedScene" uid="uid://osckj4xj15i" path="res://scenes/player/gui/hover_button.tscn" id="13_gx1jg"]
+[ext_resource type="Texture2D" uid="uid://bie8k0hkms4ma" path="res://assets/icon.svg" id="13_kvlxm"]
 [ext_resource type="PackedScene" uid="uid://crkd1jmyoefj1" path="res://scenes/player/gui/tooltip_panel.tscn" id="15_myrg7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
@@ -274,6 +275,20 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("10_gx1jg")
 script = ExtResource("11_gx1jg")
+
+[node name="DragItemDisplay" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=1461434732]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 2
+theme_type_variation = &"InvisPanel"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/DragItemDisplay" unique_id=1735212883]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("13_kvlxm")
 
 [node name="InventoryContainers" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=180275129]
 layout_mode = 0

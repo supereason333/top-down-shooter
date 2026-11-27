@@ -44,8 +44,13 @@ func add_item(item:ItemData) -> bool:
 		if container.add_item(item): return true
 	return false
 
+func add_container_item_at(item:ItemData, container:int, pos:Vector2i) -> bool:
+	if container < 0 or container >= stored_containers.size(): return false
+	return stored_containers[container].get_container().add_item(item, pos)
 
-
+func add_body_container_item_at(item:ItemData, container:int, pos:Vector2i) -> bool:
+	if container < 0 or container >= body_containers.size(): return false
+	return body_containers[container].add_item(item, pos)
 
 # func add_body_slot_item_at(item:ItemData, container:int, pos:Vector2i) -> bool:
 # 	if container < 0 or container >= body_containers.size(): return false
@@ -66,6 +71,16 @@ func get_container_item(container:int, pos:Vector2i) -> ItemData:
 func get_body_container_item(container:int, pos:Vector2i) -> ItemData:
 	if container < 0 or container >= body_containers.size(): return null
 	return body_containers[container].get_at_point(pos)
+
+func remove_container_item(container:int, pos:Vector2i) -> ItemData:
+	if container < 0 or container >= stored_containers.size(): return null
+	var con := stored_containers[container]
+	return con.get_container().remove_item_at_point(pos)
+
+func remove_body_container_item(container:int, pos:Vector2i) -> ItemData:
+	if container < 0 or container >= body_containers.size(): return null
+	return body_containers[container].remove_item_at_point(pos)
+
 
 
 
