@@ -16,6 +16,7 @@ script = ExtResource("1_jhwnd")
 id = &"counter"
 item_scene = ExtResource("2_h0kve")
 inventory_icon = ExtResource("7_xmsor")
+size = Vector2i(2, 1)
 metadata/_custom_type_script = "uid://cbjx6e4un0qvh"
 
 [sub_resource type="Resource" id="Resource_05xdy"]

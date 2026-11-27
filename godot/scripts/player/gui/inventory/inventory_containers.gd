@@ -62,6 +62,7 @@ func set_displayed(container:int, reset_signals:bool = true) -> void:
 		container_display.add_child(panel)
 
 	update_items()
+	mouse_grid_pos = Vector2i(-1, -1)
 
 func _on_hover_mouse_entered(container:int) -> void:
 	set_displayed(container)
@@ -94,6 +95,7 @@ func _on_container_removed(con:ContainerItem) -> void:
 func _container_items_changed() -> void:
 	for child in item_overlay.get_children(): child.queue_free()
 	update_items()
+	update_under_mouse()
 
 func update_items():
 	var con := inventory.stored_containers[selected_id].get_container()
@@ -144,7 +146,7 @@ func _on_drag_finished():
 
 
 
-var mouse_grid_pos:Vector2i
+var mouse_grid_pos:Vector2i = Vector2i(-1, -1)
 
 # check which is pressed and do stuff
 func _mouse_catcher_gui_input(event: InputEvent) -> void:

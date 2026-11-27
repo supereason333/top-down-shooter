@@ -111,7 +111,7 @@ max_force = 30000.0
 unique_name_in_owner = true
 script = ExtResource("2_qek5x")
 body_containers = Array[ExtResource("3_je7p5")]([SubResource("Resource_fm80t"), SubResource("Resource_gx1jg"), SubResource("Resource_ugbui"), SubResource("Resource_fcs02"), SubResource("Resource_myrg7")])
-preload_items = Array[StringName]([&"test_container", &"test_container", &"gun", &"counter", &"test_container_small"])
+preload_items = Array[StringName]([&"test_container", &"test_container", &"gun", &"counter", &"test_container_small", &"counter", &"counter", &"counter", &"counter", &"counter", &"counter", &"counter", &"counter", &"gun", &"gun", &"gun", &"gun", &"gun"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246572661]
 physics_interpolation_mode = 2
@@ -279,16 +279,20 @@ script = ExtResource("11_gx1jg")
 [node name="DragItemDisplay" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=1461434732]
 visible = false
 z_index = 1
-layout_mode = 0
-offset_right = 128.0
-offset_bottom = 128.0
+layout_mode = 1
 mouse_filter = 2
 theme_type_variation = &"InvisPanel"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/DragItemDisplay" unique_id=1735212883]
+modulate = Color(1, 1, 1, 0.6392157)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 texture = ExtResource("13_kvlxm")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="InventoryContainers" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=180275129]
 layout_mode = 0

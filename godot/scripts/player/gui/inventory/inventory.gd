@@ -31,6 +31,6 @@ func take_drag_item() -> ItemData:
 	if !current_held: return null
 	drag_disp.hide()
 	var held := current_held
-	drag_finished.emit()
 	current_held = null
+	drag_finished.emit()
 	return held

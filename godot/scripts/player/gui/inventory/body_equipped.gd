@@ -4,6 +4,7 @@ const HOVER_BUTTON:PackedScene = preload("uid://osckj4xj15i")
 
 @onready var inventory:PlayerInventory = %Inventory
 @onready var tooltip:TooltipPanel = $HBox/TooltipPanel
+@onready var root:InventoryUI = %InventoryUIRoot
 
 @onready var part_tab:HBoxContainer = $PartTab
 @onready var name_label:Label = $NameLabel
@@ -16,6 +17,10 @@ func _ready() -> void:
 	for child in part_tab.get_children(): child.queue_free()
 	for child in container_display.get_children(): child.queue_free()
 	for child in item_overlay.get_children(): child.queue_free()
+
+	root.drag_started.connect(_on_drag_started)
+	root.drag_finished.connect(_on_drag_finished)
+
 	for c in inventory.body_containers.size():
 		var hover:HoverButton = HOVER_BUTTON.instantiate()
 		hover.disabled = false
@@ -44,6 +49,51 @@ func set_displayed(container:int, reset_signals:bool = true) -> void:
 		panel.theme_type_variation = "GridPanel"
 		container_display.add_child(panel)
 
+	update_items()
+	mouse_grid_pos = Vector2i(-1, -1)
+
+func _container_items_changed() -> void:
+	update_items()
+	update_under_mouse()
+
+func _on_hover_mouse_entered(container:int) -> void:
+	set_displayed(container)
+
+var mouse_grid_pos:Vector2i = Vector2i(-1, -1)
+
+# check which is pressed and do stuff
+func _mouse_catcher_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var new_pos:Vector2i = to_grid(event.position)
+
+		if mouse_grid_pos != new_pos:
+			mouse_grid_pos = new_pos
+			update_under_mouse()
+	elif event is InputEventMouseButton:
+		if root.current_held:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				var grid := to_grid(event.position)
+				if inventory.add_body_container_item_at(root.current_held, current_container, grid):
+					root.take_drag_item()
+		else:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				var grid := to_grid(event.position)
+				var item := inventory.get_body_container_item(current_container, grid)
+				if !item: return
+				if root.request_drag(item):
+					inventory.remove_body_container_item(current_container, grid)
+
+# when mouse moves, it updates the tooltip and stuff
+func update_under_mouse():
+	var item := inventory.get_body_container_item(current_container, mouse_grid_pos)
+	if item:
+		tooltip.update(item)
+	else:
+		tooltip.clear()
+
+func update_items():
+	for child in item_overlay.get_children(): child.queue_free()
+	var con := inventory.body_containers[current_container]
 	for i in con.items.size():
 		var t_rect := TextureRect.new()
 		var master := con.items[i].get_master()
@@ -54,29 +104,40 @@ func set_displayed(container:int, reset_signals:bool = true) -> void:
 		t_rect.size = rect.size * 64
 		item_overlay.add_child(t_rect)
 
+func update_hover_buttons():
+	for child in part_tab.get_children(): child.queue_free()
+	var can_drop:Array[int]
+	for c in inventory.body_containers.size():
+		var hover:HoverButton = HOVER_BUTTON.instantiate()
+		hover.disabled = false
+		var container := inventory.body_containers[c]
+		hover.text = container.name
+		hover.mouse_entered.connect(_on_hover_mouse_entered.bind(c))
 
-func _container_items_changed() -> void:
-	pass
+		if root.current_held:
+			if !inventory.body_containers[c].can_add(root.current_held):
+				hover.disabled = true
+			else:
+				can_drop.append(c)
 
-func _on_hover_mouse_entered(container:int) -> void:
-	set_displayed(container)
+		part_tab.add_child(hover)
 
-var mouse_grid_pos:Vector2i
+	if root.current_held:
+		if can_drop.is_empty():
+			set_displayed(-1)
+		elif !can_drop.has(current_container):
+			set_displayed(can_drop[0])
+	# if root.current_held:
+	# 	pass
+	# else:
 
-# check which is pressed and do stuff
-func _mouse_catcher_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		@warning_ignore("integer_division")
-		var new_pos:Vector2i = Vector2i(event.position) / 64
+func _on_drag_started(_item:ItemData):
+	update_hover_buttons()
 
-		if mouse_grid_pos != new_pos:
-			mouse_grid_pos = new_pos
-			update_under_mouse()
+func _on_drag_finished():
+	print(root.current_held)
+	update_hover_buttons()
 
-# when mouse moves, it updates the tooltip and stuff
-func update_under_mouse():
-	var item := inventory.get_body_container_item(current_container, mouse_grid_pos)
-	if item:
-		tooltip.update(item)
-	else:
-		tooltip.clear()
+func to_grid(local:Vector2) -> Vector2i:
+	@warning_ignore("integer_division")
+	return Vector2i(local) / 64
