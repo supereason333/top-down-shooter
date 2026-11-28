@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://osckj4xj15i" path="res://scenes/player/gui/hover_button.tscn" id="13_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://bie8k0hkms4ma" path="res://assets/icon.svg" id="13_kvlxm"]
 [ext_resource type="PackedScene" uid="uid://crkd1jmyoefj1" path="res://scenes/player/gui/tooltip_panel.tscn" id="15_myrg7"]
+[ext_resource type="Script" uid="uid://ct5k67k8cxae2" path="res://scripts/player/gui/inventory/equipped_display.gd" id="18_lgqa7"]
+[ext_resource type="Script" uid="uid://b0ms141glek8h" path="res://scripts/item_system/class_scripts/item_filter/item_filter.gd" id="19_3j4b4"]
+[ext_resource type="Script" uid="uid://buoddtpla3ijt" path="res://scripts/player/gui/inventory/equipped_grid.gd" id="19_8ydkj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
 friction = 0.52
@@ -93,6 +96,26 @@ height = 1.7583008
 [sub_resource type="SphereMesh" id="SphereMesh_gmlin"]
 radius = 0.05
 height = 0.1
+
+[sub_resource type="Resource" id="Resource_yj68g"]
+script = ExtResource("19_3j4b4")
+metadata/_custom_type_script = "uid://b0ms141glek8h"
+
+[sub_resource type="Resource" id="Resource_ioxgp"]
+script = ExtResource("19_3j4b4")
+metadata/_custom_type_script = "uid://b0ms141glek8h"
+
+[sub_resource type="Resource" id="Resource_cnsyf"]
+script = ExtResource("19_3j4b4")
+metadata/_custom_type_script = "uid://b0ms141glek8h"
+
+[sub_resource type="Resource" id="Resource_007i1"]
+script = ExtResource("19_3j4b4")
+metadata/_custom_type_script = "uid://b0ms141glek8h"
+
+[sub_resource type="Resource" id="Resource_6cv16"]
+script = ExtResource("19_3j4b4")
+metadata/_custom_type_script = "uid://b0ms141glek8h"
 
 [node name="Player" type="RigidBody3D" unique_id=363198349]
 physics_interpolation_mode = 1
@@ -276,23 +299,18 @@ mouse_filter = 2
 theme = ExtResource("10_gx1jg")
 script = ExtResource("11_gx1jg")
 
-[node name="DragItemDisplay" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=1461434732]
+[node name="DragItemDisplay" type="TextureRect" parent="CanvasLayer/InventoryUIRoot" unique_id=1735212883]
 visible = false
-z_index = 1
-layout_mode = 1
-mouse_filter = 2
-theme_type_variation = &"InvisPanel"
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/DragItemDisplay" unique_id=1735212883]
 modulate = Color(1, 1, 1, 0.6392157)
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+z_index = 1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 texture = ExtResource("13_kvlxm")
-expand_mode = 2
-stretch_mode = 4
+expand_mode = 1
 
 [node name="InventoryContainers" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot" unique_id=180275129]
 layout_mode = 0
@@ -529,9 +547,12 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_type_variation = &"InvisPanel"
 
-[node name="Equipped" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer" unique_id=1736286810]
+[node name="Equipped" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer" unique_id=1736286810 node_paths=PackedStringArray("equipped_slots")]
 layout_mode = 2
 size_flags_vertical = 8
+script = ExtResource("18_lgqa7")
+equipped_slots = [NodePath("Weapons/Primary"), NodePath("Weapons/Secondary"), NodePath("Utils/Quickuse1"), NodePath("Utils/Quickuse2"), NodePath("Utils/Quickuse3")]
+filters = Array[ExtResource("19_3j4b4")]([SubResource("Resource_yj68g"), SubResource("Resource_ioxgp"), SubResource("Resource_cnsyf"), SubResource("Resource_007i1"), SubResource("Resource_6cv16")])
 
 [node name="Weapons" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped" unique_id=1726294746]
 layout_mode = 2
@@ -545,113 +566,154 @@ text = "Primary"
 layout_mode = 2
 text = "Secondary"
 
-[node name="Primary" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons" unique_id=1349231991]
+[node name="Primary" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons" unique_id=531880285]
+layout_mode = 2
+theme_type_variation = &"InvisPanel"
+script = ExtResource("19_8ydkj")
+
+[node name="Grid" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=1349231991]
 layout_mode = 2
 theme_type_variation = &"InventoryGrid"
 columns = 4
 
-[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=568212366]
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary/Grid" unique_id=568212366]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=416796981]
+[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary/Grid" unique_id=416796981]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=285280147]
+[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary/Grid" unique_id=285280147]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=44674509]
+[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary/Grid" unique_id=44674509]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel5" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=1478220129]
+[node name="Panel5" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary/Grid" unique_id=1478220129]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel6" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=758015085]
+[node name="Panel6" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary/Grid" unique_id=758015085]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel7" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=1450730421]
+[node name="Panel7" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary/Grid" unique_id=1450730421]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel8" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=2096986213]
+[node name="Panel8" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary/Grid" unique_id=2096986213]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Seconday" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons" unique_id=425600070]
+[node name="Single" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=1916675313]
+visible = false
+layout_mode = 2
+theme_type_variation = &"GridPanel"
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=41878829]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_kvlxm")
+expand_mode = 1
+
+[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=881219497]
+layout_mode = 2
+
+[node name="Secondary" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons" unique_id=983336990]
+layout_mode = 2
+theme_type_variation = &"InvisPanel"
+script = ExtResource("19_8ydkj")
+
+[node name="Grid" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary" unique_id=425600070]
 layout_mode = 2
 theme_type_variation = &"InventoryGrid"
 columns = 3
 
-[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Seconday" unique_id=1659171491]
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary/Grid" unique_id=1659171491]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Seconday" unique_id=687219848]
+[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary/Grid" unique_id=687219848]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Seconday" unique_id=314968443]
+[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary/Grid" unique_id=314968443]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Seconday" unique_id=166814291]
+[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary/Grid" unique_id=166814291]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel5" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Seconday" unique_id=1969224926]
+[node name="Panel5" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary/Grid" unique_id=1969224926]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel6" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Seconday" unique_id=1178455839]
+[node name="Panel6" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary/Grid" unique_id=1178455839]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
+
+[node name="Single" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary" unique_id=966017570]
+visible = false
+layout_mode = 2
+theme_type_variation = &"GridPanel"
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary" unique_id=142631625]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_kvlxm")
+expand_mode = 1
+
+[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary" unique_id=611598120]
+layout_mode = 2
 
 [node name="Utils" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped" unique_id=2045059502]
 layout_mode = 2
@@ -670,106 +732,166 @@ text = "Quick 2"
 layout_mode = 2
 text = "Quick 3"
 
-[node name="Quickuse1" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils" unique_id=411533924]
+[node name="Quickuse1" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils" unique_id=2124938464]
+layout_mode = 2
+theme_type_variation = &"InvisPanel"
+script = ExtResource("19_8ydkj")
+
+[node name="Grid" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=411533924]
 layout_mode = 2
 theme_type_variation = &"InventoryGrid"
 columns = 2
 
-[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=392890740]
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1/Grid" unique_id=392890740]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=1304718107]
+[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1/Grid" unique_id=1304718107]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=1946339502]
+[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1/Grid" unique_id=1946339502]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=1149996620]
+[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1/Grid" unique_id=1149996620]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Quickuse2" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils" unique_id=713422591]
+[node name="Single" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=124250180]
+visible = false
+layout_mode = 2
+theme_type_variation = &"GridPanel"
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=403603611]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_kvlxm")
+expand_mode = 1
+
+[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=1986701369]
+layout_mode = 2
+
+[node name="Quickuse2" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils" unique_id=737680555]
+layout_mode = 2
+theme_type_variation = &"InvisPanel"
+script = ExtResource("19_8ydkj")
+
+[node name="Grid" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=713422591]
 layout_mode = 2
 theme_type_variation = &"InventoryGrid"
 columns = 2
 
-[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=83271572]
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2/Grid" unique_id=83271572]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=1496653356]
+[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2/Grid" unique_id=1496653356]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=1972820324]
+[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2/Grid" unique_id=1972820324]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=759722716]
+[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2/Grid" unique_id=759722716]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Quickuse3" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils" unique_id=80295581]
+[node name="Single" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=554757929]
+visible = false
+layout_mode = 2
+theme_type_variation = &"GridPanel"
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=1857519586]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_kvlxm")
+expand_mode = 1
+
+[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=1159964639]
+layout_mode = 2
+
+[node name="Quickuse3" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils" unique_id=592920492]
+layout_mode = 2
+theme_type_variation = &"InvisPanel"
+script = ExtResource("19_8ydkj")
+
+[node name="Grid" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=80295581]
 layout_mode = 2
 theme_type_variation = &"InventoryGrid"
 columns = 2
 
-[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=1700288289]
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3/Grid" unique_id=1700288289]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=1509730311]
+[node name="Panel2" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3/Grid" unique_id=1509730311]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=62216813]
+[node name="Panel3" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3/Grid" unique_id=62216813]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=981243900]
+[node name="Panel4" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3/Grid" unique_id=981243900]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"GridPanel"
 
-[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer" unique_id=1859129398]
+[node name="Single" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=1281994265]
+visible = false
+layout_mode = 2
+theme_type_variation = &"GridPanel"
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=57836371]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_kvlxm")
+expand_mode = 1
+
+[node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=1240936379]
 layout_mode = 2
 
 [node name="TooltipPanel" parent="CanvasLayer/InventoryUIRoot/LLower" unique_id=701264611 instance=ExtResource("15_myrg7")]
@@ -796,7 +918,5 @@ mouse_filter = 2
 [connection signal="mouse_exited" from="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/ClearPanel/MouseCatcher" to="CanvasLayer/InventoryUIRoot/BodyEquipped/HBox/TooltipPanel" method="hide"]
 [connection signal="mouse_entered" from="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped" to="CanvasLayer/InventoryUIRoot/LLower/TooltipPanel" method="show"]
 [connection signal="mouse_exited" from="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped" to="CanvasLayer/InventoryUIRoot/LLower/TooltipPanel" method="hide"]
-[connection signal="mouse_entered" from="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/MouseCatcher" to="CanvasLayer/InventoryUIRoot/LLower/TooltipPanel" method="show"]
-[connection signal="mouse_exited" from="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/MouseCatcher" to="CanvasLayer/InventoryUIRoot/LLower/TooltipPanel" method="hide"]
 
 [editable path="Rotate/Y Bot"]

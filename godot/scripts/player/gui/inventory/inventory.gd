@@ -9,20 +9,22 @@ signal drag_finished
 
 @onready var inventory:PlayerInventory = %Inventory
 
-@onready var drag_disp:Control = $DragItemDisplay
-@onready var drag_disp_texture:TextureRect = $DragItemDisplay/TextureRect
+@onready var drag_disp:TextureRect = $DragItemDisplay
 
 var current_held:ItemData
 
 func _process(_delta: float) -> void:
 	if current_held:
-		drag_disp.position = get_local_mouse_position() - drag_disp.size / 2
+		drag_disp.position = get_local_mouse_position() - Vector2(32, 32)
 
 # requests a drag in the inventory, if successful caller should remove item from
 # inventory else dont
 func request_drag(item:ItemData) -> bool:
 	if current_held: return false
 	drag_disp.show()
+	var master := item.get_master()
+	drag_disp.texture = master.inventory_icon
+	drag_disp.size = master.size * 64
 	current_held = item
 	drag_started.emit(item)
 	return true

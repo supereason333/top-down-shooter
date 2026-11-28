@@ -135,7 +135,6 @@ func _on_drag_started(_item:ItemData):
 	update_hover_buttons()
 
 func _on_drag_finished():
-	print(root.current_held)
 	update_hover_buttons()
 
 func to_grid(local:Vector2) -> Vector2i:
