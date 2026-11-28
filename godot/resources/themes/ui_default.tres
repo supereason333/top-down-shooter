@@ -1,5 +1,13 @@
 [gd_resource type="Theme" format=3 uid="uid://0ghsfj13nmiv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_johbd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.45622987, 0.7951595, 0.47347796, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7suek"]
 bg_color = Color(0.585062, 0.585062, 0.58506197, 1)
 border_width_left = 3
@@ -20,6 +28,8 @@ border_color = Color(0.38738903, 0.387389, 0.38738889, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7suek"]
 
 [resource]
+EquipMarkerPanel/base_type = &"Panel"
+EquipMarkerPanel/styles/panel = SubResource("StyleBoxFlat_johbd")
 GridPanel/base_type = &"Panel"
 GridPanel/styles/panel = SubResource("StyleBoxFlat_7suek")
 HoverButtonPanel/base_type = &"PanelContainer"

@@ -36,5 +36,10 @@ func get_new(id:StringName) -> ItemData:
 	new.item_initialize()
 	return new
 
+func get_new_instance(id:StringName) -> Item3D:
+	var master := get_master(id)
+	if !master: return null
+	return master.item_scene.instantiate() if master.item_scene else null
+
 func get_master(id:StringName) -> ItemMasterData:
 	return master_lookup.get(id)

@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://dbktf3ieyi2ny" path="res://scripts/player/inventory.gd" id="2_qek5x"]
 [ext_resource type="Script" uid="uid://cja4qrm7jr227" path="res://scripts/player/camera.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://ukpbupg5i0g4" path="res://scripts/item_system/class_scripts/item_container.gd" id="3_je7p5"]
-[ext_resource type="Script" uid="uid://berlh0k5mygpf" path="res://scripts/player/item_loader.gd" id="4_75vfm"]
 [ext_resource type="Script" uid="uid://diw6hywyxjmt7" path="res://scripts/item_system/class_scripts/item_filter/must_have.gd" id="4_fcs02"]
 [ext_resource type="Material" uid="uid://dkak10a8awv5" path="res://resources/material/red_unshaded.tres" id="4_lvxji"]
+[ext_resource type="Script" uid="uid://cm2uedqpsdxui" path="res://scripts/player/item_equip.gd" id="7_8ydkj"]
 [ext_resource type="Script" uid="uid://cjk56c4mekcve" path="res://scripts/player/gui/ui_mngr.gd" id="9_h17s1"]
 [ext_resource type="Theme" uid="uid://0ghsfj13nmiv" path="res://resources/themes/ui_default.tres" id="10_gx1jg"]
 [ext_resource type="Script" uid="uid://cs522qwhcipw" path="res://scripts/player/gui/inventory/inventory.gd" id="11_gx1jg"]
@@ -238,10 +238,10 @@ bones/61/position = Vector3(9.7144515e-17, 0.4059944, 2.6714742e-16)
 bones/62/position = Vector3(-2.9143354e-16, 0.42099023, -6.2450045e-16)
 bones/63/position = Vector3(1.3877788e-17, 0.1572156, 1.3877788e-17)
 
-[node name="ItemLoader" type="Node3D" parent="Rotate" unique_id=128255414]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2151066, -0.3134039)
-script = ExtResource("4_75vfm")
-id = &"gun"
+[node name="ItemEquip" type="Node3D" parent="Rotate" unique_id=2097747937]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0963821, -0.40912968)
+script = ExtResource("7_8ydkj")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1944815126 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 2
@@ -547,11 +547,11 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_type_variation = &"InvisPanel"
 
-[node name="Equipped" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer" unique_id=1736286810 node_paths=PackedStringArray("equipped_slots")]
+[node name="Equipped" type="VBoxContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer" unique_id=1736286810 node_paths=PackedStringArray("display_slots")]
 layout_mode = 2
 size_flags_vertical = 8
 script = ExtResource("18_lgqa7")
-equipped_slots = [NodePath("Weapons/Primary"), NodePath("Weapons/Secondary"), NodePath("Utils/Quickuse1"), NodePath("Utils/Quickuse2"), NodePath("Utils/Quickuse3")]
+display_slots = [NodePath("Weapons/Primary"), NodePath("Weapons/Secondary"), NodePath("Utils/Quickuse1"), NodePath("Utils/Quickuse2"), NodePath("Utils/Quickuse3")]
 filters = Array[ExtResource("19_3j4b4")]([SubResource("Resource_yj68g"), SubResource("Resource_ioxgp"), SubResource("Resource_cnsyf"), SubResource("Resource_007i1"), SubResource("Resource_6cv16")])
 
 [node name="Weapons" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped" unique_id=1726294746]
@@ -647,6 +647,12 @@ expand_mode = 1
 [node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=881219497]
 layout_mode = 2
 
+[node name="EquipMarker" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Primary" unique_id=1836187697]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"EquipMarkerPanel"
+
 [node name="Secondary" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons" unique_id=983336990]
 layout_mode = 2
 theme_type_variation = &"InvisPanel"
@@ -714,6 +720,12 @@ expand_mode = 1
 
 [node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary" unique_id=611598120]
 layout_mode = 2
+
+[node name="EquipMarker" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Weapons/Secondary" unique_id=2099760302]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"EquipMarkerPanel"
 
 [node name="Utils" type="GridContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped" unique_id=2045059502]
 layout_mode = 2
@@ -786,6 +798,12 @@ expand_mode = 1
 [node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=1986701369]
 layout_mode = 2
 
+[node name="EquipMarker" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse1" unique_id=730266024]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"EquipMarkerPanel"
+
 [node name="Quickuse2" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils" unique_id=737680555]
 layout_mode = 2
 theme_type_variation = &"InvisPanel"
@@ -840,6 +858,12 @@ expand_mode = 1
 [node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=1159964639]
 layout_mode = 2
 
+[node name="EquipMarker" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse2" unique_id=1560247087]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"EquipMarkerPanel"
+
 [node name="Quickuse3" type="PanelContainer" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils" unique_id=592920492]
 layout_mode = 2
 theme_type_variation = &"InvisPanel"
@@ -893,6 +917,12 @@ expand_mode = 1
 
 [node name="MouseCatcher" type="Control" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=1240936379]
 layout_mode = 2
+
+[node name="EquipMarker" type="Panel" parent="CanvasLayer/InventoryUIRoot/LLower/PanelContainer/Equipped/Utils/Quickuse3" unique_id=1098110425]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"EquipMarkerPanel"
 
 [node name="TooltipPanel" parent="CanvasLayer/InventoryUIRoot/LLower" unique_id=701264611 instance=ExtResource("15_myrg7")]
 visible = false

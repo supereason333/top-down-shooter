@@ -5,6 +5,7 @@ class_name EqippedGrid
 @onready var single_panel:Panel = $Single
 @onready var texture:TextureRect = $Texture
 @onready var mouse_catcher:Control = $MouseCatcher
+@onready var equipped_marker:Panel = $EquipMarker
 
 var grid_size:Vector2i
 
